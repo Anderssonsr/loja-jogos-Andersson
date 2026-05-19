@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProdutoService } from 'src/app/servicos/produto.service';
+
 @Component({
   selector: 'app-cadastro-produto',
   templateUrl: './cadastro-produto.component.html',
@@ -13,11 +14,13 @@ export class CadastroProdutoComponent implements OnInit {
     foto: '',
     preco: null
   };
+
   constructor(
     private produtoService: ProdutoService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
+
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
@@ -26,6 +29,7 @@ export class CadastroProdutoComponent implements OnInit {
       });
     }
   }
+
   salvarProduto(): void {
     if (this.produto.id) {
       this.produtoService.atualizarProduto(this.produto.id, this.produto).subscribe(() => {
